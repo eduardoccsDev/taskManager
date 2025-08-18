@@ -1,3 +1,4 @@
+// src/routes/task.routes.ts
 import { Router } from 'express';
 import { authenticate } from '../middleware/auth.middleware';
 import { getTasks, createTask, updateTask, deleteTask } from '../controllers/task.controller';
@@ -5,11 +6,9 @@ import { getTasks, createTask, updateTask, deleteTask } from '../controllers/tas
 const router = Router();
 
 /**
-
-Rotas de tarefas (CRUD)
-
-Todas as rotas são protegidas pelo JWT via middleware authenticate
-*/
+ * Rotas de tarefas (CRUD)
+ * Todas as rotas são protegidas pelo JWT via middleware authenticate
+ */
 
 // Listar todas as tarefas do usuário logado
 router.get('/', authenticate, getTasks);

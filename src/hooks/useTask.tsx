@@ -11,7 +11,7 @@ export const useTasks = () => {
     if (!token) return;
 
     // Tipando a resposta como Task[]
-    axios.get<Task[]>('http://localhost:3333/api/tasks', {
+    axios.get<Task[]>('http://localhost:3333/api', {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(res => setTasks(res.data))
@@ -20,7 +20,7 @@ export const useTasks = () => {
 
   const addTask = async (title: string) => {
     const res = await axios.post<Task>(
-      'http://localhost:3333/api/tasks',
+      'http://localhost:3333/api',
       { title },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -32,7 +32,7 @@ export const useTasks = () => {
     if (!task) return;
 
     const res = await axios.put<Task>(
-      `http://localhost:3333/api/tasks/${id}`,
+      `http://localhost:3333/api/${id}`,
       { done: !task.done },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -40,7 +40,7 @@ export const useTasks = () => {
   };
 
   const removeTask = async (id: number) => {
-    await axios.delete(`http://localhost:3333/api/tasks/${id}`, {
+    await axios.delete(`http://localhost:3333/api/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setTasks(prev => prev.filter(t => t.id !== id));

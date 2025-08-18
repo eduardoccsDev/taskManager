@@ -3,16 +3,22 @@ $danger-color: #e74c3c;
 $font-primary-color: #1a1a1a;
 
 body {
+  width: 100%;
   font-family: sans-serif;
   background: #1a1a1a;
   margin: 0;
   padding: 0;
-  display: flex; 
   justify-content: center;
   min-height: 100vh;
   align-items: center; 
 }
-
+#root {
+  padding-inline:30px;
+}
+h1 {
+  text-align: center;
+  color: #fff;
+}
 form {
   background: white;
   padding: 2rem;
@@ -51,18 +57,35 @@ button {
     background-color: $danger-color;
     color: white;
   }
+
+  &.remove {
+    background-color: rgb(199, 71, 71);
+    color: #fff;
+    transition: background-color 0.5s ease-in-out;
+    transition-delay: 0.01s;
+    &:hover {
+      background-color: rgb(151, 50, 50);
+    }
+  }
 }
 
-ul {
+#taskWrapper {
     background-color: #fff;
     color: $font-primary-color;
     border-radius: 5px;
-    padding-block: 15px;
+    padding-block: 30px;
     padding-inline: 30px;
-    max-width: 280px;
-    min-width: 280px;
+    display: flex;
+    flex-direction: row;
+    margin-block-start: 10px;
+    gap: 20px;
+    flex-wrap: wrap;
 
-    &:not(:has(li))::before {
+    &:not(:has(.taskCard)) {
+      display: block;
+    }
+
+    &:not(:has(.taskCard))::before {
         content: "Nenhuma tarefa encontrada";
         display: block;
         text-align: center;
@@ -70,21 +93,19 @@ ul {
         font-style: italic;
     }
 
-    li{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: solid 1px #00000029;
-        margin-block-end: 5px;
-        padding-block-end: 5px;
-        &:last-child {
-            border: none;
-            margin-block-end: 0px;
-            padding-block-end: 0px;
-        }
+    .taskCard{
+      display: flex;
+      background-color: #fff;
+      padding: 10px;
+      flex-direction: column;
+      gap: 10px;
+      width: 233px;
+      border-radius: 10px;
+      //border: solid 1px #1a1a1a;
+      box-shadow: 0px 0px 8px 0px #1a1a1a59;
     }
 }
+
 span{
     &.cursor-pointer {
         margin-inline-end: 10px;

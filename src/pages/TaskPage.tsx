@@ -30,9 +30,9 @@ export const TaskPage = () => {
         </button>
       </form>
 
-      <ul>
+      <div id="taskWrapper">
         {tasks.map((task: Task) => (
-          <li key={task.id} className="flex justify-between items-center mb-2">
+          <div key={task.id} className="taskCard">
             <span
               onClick={() => toggleTask(task.id)}
               className={`cursor-pointer ${task.done ? "line-through text-gray-500" : ""}`}
@@ -41,13 +41,13 @@ export const TaskPage = () => {
             </span>
             <button
               onClick={() => removeTask(task.id)}
-              className="text-red-500"
+              className="remove"
             >
               Remover
             </button>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
