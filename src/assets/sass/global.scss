@@ -14,10 +14,14 @@ body {
 }
 #root {
   padding-inline:30px;
+  padding-block:30px;
 }
 h1 {
   text-align: center;
   color: #fff;
+  &.dark {
+    color: #1a1a1a;
+  }
 }
 form {
   background: white;
@@ -58,7 +62,7 @@ button {
     color: white;
   }
 
-  &.remove {
+  &.remove, &.logout {
     background-color: rgb(199, 71, 71);
     color: #fff;
     transition: background-color 0.5s ease-in-out;
@@ -66,6 +70,11 @@ button {
     &:hover {
       background-color: rgb(151, 50, 50);
     }
+  }
+  &.logout {
+    display: block;
+    margin: 0 auto;
+    margin-block-end: 20px;
   }
 }
 
@@ -114,4 +123,13 @@ span{
         text-decoration: line-through;
         color: #999;
     }
+}
+div{
+  &.loginWrapper, &.registerWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 300px;
+    margin: 0 auto;
+  } 
 }

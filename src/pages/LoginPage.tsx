@@ -13,6 +13,7 @@ export const LoginPage = () => {
     try {
       await login(email, password);
       alert('Login realizado com sucesso!');
+      navigate('/tasks');
     } catch (err) {
         console.log(err);
       setError('Email ou senha inválidos');
@@ -27,31 +28,33 @@ export const LoginPage = () => {
 
   return (
     <form onSubmit={handleSubmit} className="p-4 max-w-md mx-auto bg-white rounded shadow">
-      <h1 className="text-xl font-bold mb-4">Login</h1>
+      <h1 className="dark">Login</h1>
       {error && <p className="text-red-500 mb-2">{error}</p>}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="block mb-2 w-full border px-2 py-1 rounded"
-        required
-      />
-      <input
-        type="password"
-        placeholder="Senha"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="block mb-4 w-full border px-2 py-1 rounded"
-        required
-      />
-      <button type="submit" className="bg-blue-500 text-white px-4 py-1 rounded">Entrar</button>
-      <button
-      className="bg-blue-500 text-white px-4 py-1 rounded"
-      onClick={handleClick}
-        >
-      Registrar
-    </button>
+      <div className="loginWrapper">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="block mb-2 w-full border px-2 py-1 rounded"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="block mb-4 w-full border px-2 py-1 rounded"
+            required
+          />
+          <button type="submit" className="bg-blue-500 text-white px-4 py-1 rounded">Entrar</button>
+          <button
+          className="bg-blue-500 text-white px-4 py-1 rounded"
+          onClick={handleClick}
+            >
+          Registrar
+        </button>
+      </div>
     </form>
   );
 };

@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { useTasks } from "../hooks/useTask";
 import type { Task } from "../types/taskType";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from 'react-router-dom';
 
 export const TaskPage = () => {
   const { tasks, addTask, toggleTask, removeTask } = useTasks();
   const [newTask, setNewTask] = useState("");
-
+  const { logout } = useAuth();
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
   const handleAddTask = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTask.trim()) return;
@@ -13,10 +17,27 @@ export const TaskPage = () => {
     setNewTask("");
   };
 
+  const handleClick = async () => {
+    try {
+      await logout();
+      alert('Logout realizado com sucesso, até mais.');
+      navigate('/login');
+    } catch (err) {
+      console.log(err);
+      setError('Erro ao efetuar logout');
+    }
+  }
+
   return (
     <div className="p-4 max-w-md mx-auto">
       <h1 className="text-xl font-bold mb-4">Task Manager</h1>
-
+      <button
+          className="logout"
+          onClick={handleClick}
+            >
+          Logout
+        </button>
+      {error && <p className="text-red-500 mb-2">{error}</p>}
       <form onSubmit={handleAddTask} className="flex gap-2 mb-4">
         <input
           type="text"
